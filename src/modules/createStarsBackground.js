@@ -18,16 +18,10 @@ export const createStarsBackground = (scene) => {
   }
 
   const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute(
-    'position',
-    new THREE.Float32BufferAttribute(vertices, 3)
-  );
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
   // Store the initial orbit radius as a custom attribute
-  geometry.setAttribute(
-    'orbitRadius',
-    new THREE.Float32BufferAttribute(orbitRadius, 1)
-  );
+  geometry.setAttribute('orbitRadius', new THREE.Float32BufferAttribute(orbitRadius, 1));
 
   const material = new THREE.ShaderMaterial({
     uniforms: {
@@ -64,9 +58,13 @@ export const createStarsBackground = (scene) => {
   scene.add(points);
 };
 
-export function animate(render, scene, camera, clock) {
-  clock.getDelta();
+export function animate(renderer, scene, camera, clock) {
+  const delta = clock.getDelta();
+  const elapsedTime = clock.elapsedTime;
+
   const points = scene.children.find((child) => child instanceof THREE.Points);
+  if (!points) return;
+
   const positions = points.geometry.attributes.position.array;
   const orbitRadius = points.geometry.attributes.orbitRadius.array;
 
@@ -75,8 +73,8 @@ export function animate(render, scene, camera, clock) {
   // Update positions to simulate circular orbit
   for (let i = 0; i < positions.length; i += 3) {
     const radius = orbitRadius[i / 3];
-    // Calculate the angle of rotation
-    const angle = clock.elapsedTime * orbitSpeed + i;
+    // Calculate the angle of rotation for each star
+    const angle = elapsedTime * orbitSpeed + (i / 3) * 0.1; // Use i/3 to ensure each point has a different offset
 
     positions[i] = radius * Math.cos(angle); // Update x position
     positions[i + 1] = radius * Math.sin(angle); // Update y position
@@ -85,5 +83,8 @@ export function animate(render, scene, camera, clock) {
 
   points.geometry.attributes.position.needsUpdate = true;
 
-  render.render(scene, camera);
+  // Update the shader's time uniform to animate stars' opacity
+  points.material.uniforms.time.value = elapsedTime;
+
+  renderer.render(scene, camera);
 }

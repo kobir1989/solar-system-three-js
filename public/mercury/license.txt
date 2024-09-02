@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mercury
+* source:	https://sketchfab.com/3d-models/mercury-bc229dccc66b439ebe5fe4a80c4e535a
+* author:	Recourse Design ltd. (https://sketchfab.com/RecourseDesign)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mercury" (https://sketchfab.com/3d-models/mercury-bc229dccc66b439ebe5fe4a80c4e535a) by Recourse Design ltd. (https://sketchfab.com/RecourseDesign) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
