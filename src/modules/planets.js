@@ -1,0 +1,58 @@
+export const planets = [
+  {
+    name: 'mercury',
+    radius: 20,
+    speed: 0.04,
+    size: { x: 0.1, y: 0.1, z: 0.1 },
+    url: '/mercury/scene.gltf',
+  },
+  {
+    name: 'venus',
+    radius: 30,
+    speed: 0.015,
+    size: { x: 0.1, y: 0.1, z: 0.1 },
+    url: '/venus/scene.gltf',
+  },
+  {
+    name: 'earth',
+    radius: 40,
+    speed: 0.01,
+    size: { x: 4, y: 4, z: 4 },
+    url: '/earth/scene.gltf',
+  },
+  {
+    name: 'mars',
+    radius: 50,
+    speed: 0.008,
+    size: { x: 2, y: 2, z: 2 },
+    url: '/mars/scene.gltf',
+  },
+  {
+    name: 'jupiter',
+    radius: 70,
+    speed: 0.005,
+    size: { x: 2, y: 2, z: 2 },
+    url: '/jupiter/scene.gltf',
+  },
+  {
+    name: 'saturn',
+    radius: 90,
+    speed: 0.003,
+    size: { x: 2, y: 2, z: 2 },
+    url: '/saturn_planet/scene.gltf',
+  },
+  {
+    name: 'uranus',
+    radius: 110,
+    speed: 0.002,
+    size: { x: 1.8, y: 1.8, z: 1.8 },
+    url: '/uranus/scene.gltf',
+  },
+  {
+    name: 'neptune',
+    radius: 127,
+    speed: 0.0015,
+    size: { x: 5, y: 5, z: 5 },
+    url: '/neptune/scene.gltf',
+  },
+];

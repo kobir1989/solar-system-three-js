@@ -6,9 +6,9 @@ export const createStarsBackground = (scene) => {
 
   for (let i = 0; i < 20000; i++) {
     // Initial position of stars
-    const x = THREE.MathUtils.randFloatSpread(600);
-    const y = THREE.MathUtils.randFloatSpread(600);
-    const z = THREE.MathUtils.randFloatSpread(600);
+    const x = THREE.MathUtils.randFloatSpread(1000);
+    const y = THREE.MathUtils.randFloatSpread(1000);
+    const z = THREE.MathUtils.randFloatSpread(1000);
 
     vertices.push(x, y, z);
 
@@ -25,8 +25,8 @@ export const createStarsBackground = (scene) => {
 
   const material = new THREE.ShaderMaterial({
     uniforms: {
-      color: { value: new THREE.Color('#FFFF00') },
-      size: { value: 3 },
+      color: { value: new THREE.Color('#FFF') },
+      size: { value: 1.5 },
       time: { value: 0 },
     },
     vertexShader: `
@@ -58,8 +58,8 @@ export const createStarsBackground = (scene) => {
   scene.add(points);
 };
 
-export function animate(renderer, scene, camera, clock) {
-  const delta = clock.getDelta();
+export const animate = (renderer, scene, camera, clock) => {
+  clock.getDelta();
   const elapsedTime = clock.elapsedTime;
 
   const points = scene.children.find((child) => child instanceof THREE.Points);
@@ -68,7 +68,7 @@ export function animate(renderer, scene, camera, clock) {
   const positions = points.geometry.attributes.position.array;
   const orbitRadius = points.geometry.attributes.orbitRadius.array;
 
-  const orbitSpeed = 0.01;
+  const orbitSpeed = 0.001;
 
   // Update positions to simulate circular orbit
   for (let i = 0; i < positions.length; i += 3) {
@@ -87,4 +87,4 @@ export function animate(renderer, scene, camera, clock) {
   points.material.uniforms.time.value = elapsedTime;
 
   renderer.render(scene, camera);
-}
+};

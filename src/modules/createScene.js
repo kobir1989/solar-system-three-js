@@ -22,6 +22,9 @@ export const createScene = () => {
     camera.updateProjectionMatrix();
   });
 
-  renderer.setClearColor('#000');
+  // Enable shadows on the renderer
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
   return { scene, camera, renderer };
 };

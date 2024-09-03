@@ -1,13 +1,24 @@
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-export const loadGLTFModal = (positions, scale, path, scene) => {
-  const { x, y, z } = positions;
+export function loadGLTFModal(position, scale, url, scene) {
+  return new Promise((resolve, reject) => {
+    const loader = new GLTFLoader();
 
-  new GLTFLoader().load(path, (gltf) => {
-    console.log('gltf', gltf);
-    const modal = gltf.scene;
-    modal.position.set(x, y, z);
-    modal.scale.set(scale.x, scale.y, scale.z);
-    scene.add(modal);
+    loader.load(
+      url,
+      (gltf) => {
+        const model = gltf.scene;
+        model.position.set(position.x, position.y, position.z);
+        model.scale.set(scale.x, scale.y, scale.z);
+        scene.add(model);
+        resolve(model);
+      },
+      undefined,
+      (error) => {
+        console.error('ERROR_:', error);
+        reject(error);
+      }
+    );
   });
-};
+}
